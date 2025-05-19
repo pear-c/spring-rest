@@ -22,7 +22,7 @@ public class CsvHttpMessageConverter extends AbstractHttpMessageConverter<List<M
 
     @Override
     protected boolean supports(Class<?> clazz) {
-        return Member.class.isAssignableFrom(clazz);
+        return List.class.isAssignableFrom(clazz);
     }
 
     @Override
@@ -31,22 +31,27 @@ public class CsvHttpMessageConverter extends AbstractHttpMessageConverter<List<M
     }
 
     @Override
-    protected void writeInternal(List<Member> members, HttpOutputMessage outputMessage) throws IOException, HttpMessageNotWritableException {
-        Field[] fields = member.getClass().getDeclaredFields();
-
-        outputMessage.getHeaders().setContentType(MediaType.valueOf("text/csv; charset=UTF-8"));
-        try(Writer writer = new OutputStreamWriter(outputMessage.getBody())) {
-            for(Field field : fields) {
-                writer.write(field.getName() + ",");
-            }
-            writer.write(System.lineSeparator());
-            writer.write(member.toString());
-        }
-        return;
+    protected boolean canRead(MediaType mediaType) {
+        return false;
     }
 
     @Override
-    protected boolean canRead(MediaType mediaType) {
-        return false;
+    protected void writeInternal(List<Member> members, HttpOutputMessage outputMessage) throws IOException, HttpMessageNotWritableException {
+
+        outputMessage.getHeaders().setContentType(MediaType.valueOf("text/csv; charset=UTF-8"));
+
+        try(Writer writer = new OutputStreamWriter(outputMessage.getBody())) {
+            Field[] fields = members.get(0).getClass().getDeclaredFields();
+            for(int i=0; i<fields.length; i++) {
+                writer.write(fields[i].getName());
+                if(i < fields.length - 1) {
+                    writer.write(',');
+                }
+            }
+            writer.write(System.lineSeparator());
+            for(Member member : members) {
+                writer.write(member.toString() + System.lineSeparator());
+            }
+        }
     }
 }
