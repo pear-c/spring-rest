@@ -3,6 +3,7 @@ package com.nhnacademy.daily.service;
 import com.nhnacademy.daily.exception.ResourceNotFoundException;
 import com.nhnacademy.daily.model.Locale;
 import com.nhnacademy.daily.model.Member;
+import com.nhnacademy.daily.model.MessageSendClient;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;

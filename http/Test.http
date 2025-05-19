@@ -19,4 +19,3 @@ POST localhost:8080/members
 Content-Type: text/csv
 
 2,김철수,20,B,ko
-3,이영희,33,C,en
