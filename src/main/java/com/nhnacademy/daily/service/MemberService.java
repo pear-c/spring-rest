@@ -31,4 +31,10 @@ public class MemberService {
     public List<Member> getMemberList() {
         return new ArrayList<>(memberMap.values());
     }
+
+    public void addMembers(List<Member> members) {
+        for(Member member : members){
+            memberMap.put(member.getId(), member);
+        }
+    }
 }

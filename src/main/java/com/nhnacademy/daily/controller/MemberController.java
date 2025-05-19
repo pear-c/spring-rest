@@ -5,9 +5,7 @@ import com.nhnacademy.daily.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -26,6 +24,12 @@ public class MemberController {
     @GetMapping("/members")
     public ResponseEntity<List<Member>> getAllMembers(Pageable pageable) {
         List<Member> members = memberService.getMemberList();
+        return ResponseEntity.ok(members);
+    }
+
+    @PostMapping("/members")
+    public ResponseEntity<List<Member>> registerMember(@RequestBody List<Member> members) {
+        memberService.addMembers(members);
         return ResponseEntity.ok(members);
     }
 }
