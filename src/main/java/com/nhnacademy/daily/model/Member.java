@@ -25,4 +25,9 @@ public class Member {
         this.clazz = clazz;
         this.locale = locale;
     }
+
+    @Override
+    public String toString() {
+        return id + "," + name + "," + age + "," + clazz + "," + locale;
+    }
 }

@@ -9,3 +9,7 @@ GET localhost:8080/members/1
 
 ### 프로젝트 조회
 GET localhost:8080/projects/black&white
+
+### 멤버 조회 - csv
+GET localhost:8080/members
+Accept: text/csv
