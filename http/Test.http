@@ -3,3 +3,9 @@ GET localhost:8080/members
 
 ### 프로젝트 리스트 조회
 GET localhost:8080/projects
+
+### 멤버 조회
+GET localhost:8080/members/1
+
+### 프로젝트 조회
+GET localhost:8080/projects/black&white

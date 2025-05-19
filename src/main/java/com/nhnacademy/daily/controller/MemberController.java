@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -15,6 +16,12 @@ import java.util.List;
 public class MemberController {
 
     private final MemberService memberService;
+
+    @GetMapping("/members/{id}")
+    public ResponseEntity<Member> getMember(@PathVariable String id) {
+        Member member = memberService.getMember(id);
+        return ResponseEntity.ok(member);
+    }
 
     @GetMapping("/members")
     public ResponseEntity<List<Member>> getAllMembers(Pageable pageable) {

@@ -1,5 +1,6 @@
 package com.nhnacademy.daily.service;
 
+import com.nhnacademy.daily.exception.ResourceNotFoundException;
 import com.nhnacademy.daily.model.Locale;
 import com.nhnacademy.daily.model.Member;
 import org.springframework.stereotype.Service;
@@ -19,10 +20,12 @@ public class MemberService {
         memberMap.put(member.getId(), member);
     }
 
-    private Member getMember(String id){
+    public Member getMember(String id){
         //TODO
-
-        return null;
+        if(!memberMap.containsKey(id)){
+            throw new ResourceNotFoundException();
+        }
+        return memberMap.get(id);
     }
 
     public List<Member> getMemberList() {
