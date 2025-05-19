@@ -4,7 +4,9 @@ import com.nhnacademy.daily.model.Locale;
 import com.nhnacademy.daily.model.Member;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -13,7 +15,7 @@ public class MemberService {
 
     public MemberService() {
         this.memberMap = new HashMap<>();
-        Member member = new Member("baek", "백종원",  50, "A", Locale.KO);
+        Member member = new Member("1", "유재석",  50, "A", Locale.KO);
         memberMap.put(member.getId(), member);
     }
 
@@ -21,5 +23,9 @@ public class MemberService {
         //TODO
 
         return null;
+    }
+
+    public List<Member> getMemberList() {
+        return new ArrayList<>(memberMap.values());
     }
 }
